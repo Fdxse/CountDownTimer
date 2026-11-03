@@ -2,7 +2,9 @@
 
 A small on-screen countdown timer for Windows. Only the digits are shown: the window
 has no border, a transparent background, and always stays on top of other windows.
-When the time is up it flashes a red **00:00** until you close or restart it.
+It starts in the upper right corner of the screen. With 10 seconds left the digits turn
+red and start flashing, and when the time is up it flashes **TimeOut!** until you close or
+restart it. Both the end text and when the flashing starts can be changed in `settings.json`.
 
 ## Requirements
 
@@ -45,6 +47,26 @@ dotnet run --project src/CountDownTimer -- 4:30
 | `N`                    | Set a new duration                   |
 | `Esc`                  | Close                                |
 | Right-click            | Menu with the same actions           |
+
+## Settings
+
+`settings.json` sits next to `CountDownTimer.exe` (in the repo: `src/CountDownTimer/settings.json`).
+If it is missing, the app creates it with the defaults on start-up.
+
+```json
+{
+  "FinishedText": "TimeOut!",
+  "FlashWhenSecondsLeft": 10
+}
+```
+
+| Setting                | What it does                                                        |
+|------------------------|---------------------------------------------------------------------|
+| `FinishedText`         | Text shown (flashing) when the time is up                           |
+| `FlashWhenSecondsLeft` | Start flashing when this many seconds are left. `0` = only at the end |
+
+Changes take effect the next time the timer is started. If the file can't be read, the
+app says so and uses the defaults.
 
 ## Make a standalone .exe
 
