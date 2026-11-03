@@ -13,6 +13,9 @@ public partial class App : Application
     {
         base.OnStartup(startupArguments);
 
+        // Read settings.json (end text, when to start flashing) before anything is shown.
+        TimerSettings timerSettings = TimerSettings.Load();
+
         // Try to use a duration given on the command line.
         TimeSpan? durationFromCommandLine = null;
         if (startupArguments.Args.Length > 0
@@ -30,7 +33,7 @@ public partial class App : Application
             return;
         }
 
-        var timerWindow = new TimerWindow(chosenDuration.Value);
+        var timerWindow = new TimerWindow(chosenDuration.Value, timerSettings);
         timerWindow.Closed += (_, _) => Shutdown();
         timerWindow.Show();
     }

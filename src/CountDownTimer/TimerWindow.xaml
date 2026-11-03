@@ -1,6 +1,7 @@
 <!--
     The on-screen timer. The window has no border and a transparent background,
     so only the digits are visible. It always stays on top of other windows.
+    It starts in the upper right corner of the screen (see TimerWindow.xaml.cs).
 
     Background is "#01000000": 1/255 opaque black. It looks fully invisible but lets
     the mouse grab the whole timer area (fully transparent pixels ignore the mouse).
@@ -16,7 +17,8 @@
         ShowInTaskbar="True"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="Manual"
+        SizeChanged="OnSizeChanged"
         MouseLeftButtonDown="OnMouseLeftButtonDown"
         MouseWheel="OnMouseWheel"
         KeyDown="OnKeyDown">
