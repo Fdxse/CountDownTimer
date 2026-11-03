@@ -1,0 +1,16 @@
+# Builds the timer on Windows for every push and pull request,
+# so we know the app still compiles. The Windows runner already has the .NET 8 SDK.
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: dotnet build src/CountDownTimer/CountDownTimer.csproj --configuration Release
